@@ -1,0 +1,45 @@
+[versions]
+kotlin = "2.2.20"
+ktor = "3.3.1"
+logback = "1.5.20"
+kotlinxSerializationJSON = "1.7.3"
+kotlinxCoroutines = "1.10.2"
+koin = "4.1.1"
+kotest = "6.0.4"
+mockk = "1.14.6"
+mongo = "5.5.1"
+
+[libraries]
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+kotlinxSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm", version.ref = "kotlinxSerializationJSON" }
+kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinxCoroutinesReactive = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactive", version.ref = "kotlinxCoroutines"}
+
+ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
+ktor-server-cio = {module = "io.ktor:ktor-server-cio-jvm", version.ref = "ktor"}
+ktor-server-config-yaml = {module = "io.ktor:ktor-server-config-yaml-jvm", version.ref = "ktor"}
+ktor-server-contentNegotiation = {module = "io.ktor:ktor-server-content-negotiation-jvm", version.ref = "ktor"}
+ktor-server-openapi = {module = "io.ktor:ktor-server-openapi-jvm", version.ref = "ktor"}
+ktor-server-swagger = {module = "io.ktor:ktor-server-swagger-jvm", version.ref = "ktor"}
+ktor-serialization-kotlinx-json = {module = "io.ktor:ktor-serialization-kotlinx-json-jvm", version.ref = "ktor"}
+
+mongodb-driver-reactivestreams = {module = "org.mongodb:mongodb-driver-reactivestreams", version.ref = "mongo"}
+mongodb-driver-kotlin-extensions = {module = "org.mongodb:mongodb-driver-kotlin-extensions", version.ref = "mongo"}
+mongodb-driver-kotlin-coroutine = {module = "org.mongodb:mongodb-driver-kotlin-coroutine", version.ref = "mongo"}
+mongodb-bson-kotlinx = {module = "org.mongodb:bson-kotlinx", version.ref = "mongo"}
+
+koin-core = {module = "io.insert-koin:koin-core-jvm", version.ref = "koin"}
+koin-ktor = {module = "io.insert-koin:koin-ktor-jvm", version.ref = "koin"}
+koin-logger-slf4j ={module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin"}
+
+kotest-assertions-core = {module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest"}
+kotest-assertions-ktor = {module = "io.kotest.extensions:kotest-assertions-ktor-jvm", version.ref = "kotest"}
+kotest-extensions-koin = {module = "io.kotest:kotest-extensions-koin-jvm", version.ref = "kotest"}
+mockk = {module = "io.mockk:mockk-jvm", version.ref = "mockk"}
+
+ktor-serverTestHost = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }
+
+[plugins]
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
