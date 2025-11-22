@@ -25,8 +25,6 @@ dependencies {
     implementation(libs.ktor.server.netty)
     implementation(libs.ktor.server.contentNegotiation)
     implementation(libs.ktor.server.config.yaml)
-    implementation(libs.ktor.server.swagger)
-    implementation(libs.ktor.server.openapi)
     implementation(libs.ktor.network.tsl.certificates)
     implementation(libs.ktor.serialization.kotlinx.json)
 
@@ -35,12 +33,4 @@ dependencies {
     implementation(libs.koin.logger.slf4j)
 
     testImplementation(libs.ktor.serverTestHost)
-}
-
-ktor {
-    openApi{
-        title = "Buyly API"
-        version = "1.0.0"
-        target = project.layout.projectDirectory.file("openapi/generated.json")
-    }
 }

@@ -1,6 +1,8 @@
 package presentation.controller
 
 import io.ktor.http.HttpStatusCode
+import io.ktor.server.plugins.openapi.openAPI
+import io.ktor.server.plugins.swagger.swaggerUI
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.response.respondText
@@ -16,6 +18,8 @@ import presentation.service.CatalogueService
 
 fun Route.catalogueController(service: CatalogueService = get()) {
     route("/catalogue") {
+        openAPI(path = "/docs/openapi", swaggerFile = "openapi/api-doc.json")
+        swaggerUI(path = "/docs/swagger", swaggerFile = "openapi/api-doc.json")
         get{
             val res = service.getAll()
             call.respond(res)

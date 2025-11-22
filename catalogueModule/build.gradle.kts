@@ -15,6 +15,8 @@ dependencies {
     implementation(libs.kotlinxCoroutinesReactive)
 
     implementation(libs.ktor.server.core)
+    implementation(libs.ktor.server.openapi)
+    implementation(libs.ktor.server.swagger)
     implementation(libs.kotlinxSerialization)
 
     implementation(libs.koin.core)
