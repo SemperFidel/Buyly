@@ -1,3 +1,7 @@
+@file:OptIn(OpenApiPreview::class)
+
+import io.ktor.plugin.OpenApiPreview
+
 plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.ktor)
@@ -30,4 +34,12 @@ dependencies {
     implementation(libs.koin.logger.slf4j)
 
     testImplementation(libs.ktor.serverTestHost)
+}
+
+ktor {
+    openApi{
+        title = "Buyly API"
+        version = "1.0.0"
+        target = project.layout.projectDirectory.file("openapi/generated.json")
+    }
 }

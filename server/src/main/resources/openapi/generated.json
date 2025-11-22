@@ -1,0 +1,130 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Catalogue API",
+    "version": "1.0.0",
+    "description": "CRUD операции для каталога продуктов"
+  },
+  "paths": {
+    "/catalogue": {
+      "get": {
+        "summary": "Get all products",
+        "responses": {
+          "200": {
+            "description": "List of products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ProductDTO" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Catalogue"]
+      },
+      "post": {
+        "summary": "Create a new product",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProductDTO" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Product created" },
+          "400": { "description": "Invalid JSON or bad request" }
+        },
+        "tags": ["Catalogue"]
+      }
+    },
+    "/catalogue/{id}": {
+      "get": {
+        "summary": "Get product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product found",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProductDTO" } } }
+          },
+          "400": { "description": "Missing id" },
+          "404": { "description": "Not found" }
+        },
+        "tags": ["Catalogue"]
+      },
+      "put": {
+        "summary": "Update product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProductDTO" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Product updated" },
+          "400": { "description": "Invalid JSON or bad request" },
+          "404": { "description": "Not found" }
+        },
+        "tags": ["Catalogue"]
+      },
+      "delete": {
+        "summary": "Delete product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Product deleted" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Not found" }
+        },
+        "tags": ["Catalogue"]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ProductDTO": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "nullable": true },
+          "name": { "type": "string" },
+          "price": { "type": "number", "format": "double" },
+          "shortDesc": { "type": "string" },
+          "imagesURL": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["name", "price", "shortDesc", "imagesURL"]
+      }
+    }
+  },
+  "tags": [
+    { "name": "Catalogue", "description": "Операции с товарами каталога" }
+  ]
+}
