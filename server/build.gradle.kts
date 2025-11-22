@@ -22,11 +22,12 @@ dependencies {
     implementation(libs.logback)
 
     implementation(libs.ktor.server.core)
-    implementation(libs.ktor.server.cio)
+    implementation(libs.ktor.server.netty)
     implementation(libs.ktor.server.contentNegotiation)
     implementation(libs.ktor.server.config.yaml)
     implementation(libs.ktor.server.swagger)
     implementation(libs.ktor.server.openapi)
+    implementation(libs.ktor.network.tsl.certificates)
     implementation(libs.ktor.serialization.kotlinx.json)
 
     implementation(libs.koin.core)
