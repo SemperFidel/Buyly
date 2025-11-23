@@ -1,7 +1,3 @@
-@file:OptIn(OpenApiPreview::class)
-
-import io.ktor.plugin.OpenApiPreview
-
 plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.ktor)
@@ -24,6 +20,7 @@ dependencies {
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.netty)
     implementation(libs.ktor.server.contentNegotiation)
+    implementation(libs.ktor.server.statusPages)
     implementation(libs.ktor.server.config.yaml)
     implementation(libs.ktor.network.tsl.certificates)
     implementation(libs.ktor.serialization.kotlinx.json)
