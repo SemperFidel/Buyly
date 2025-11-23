@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.reactive.awaitSingle
+import org.bson.types.ObjectId
 
 class CatalogueRepositoryImpl(
     private val db: MongoConnection,
@@ -19,8 +20,11 @@ class CatalogueRepositoryImpl(
     override suspend fun getAllProducts(): List<Product> =
         collection.find().asFlow().toList()
 
-    override suspend fun getProductById(id: String): Product? =
-        collection.find(Filters.eq("_id", id)).awaitFirstOrNull()
+    override suspend fun getProductById(id: String): Product? {
+        val objId = ObjectId(id)
+        return collection.find(Filters.eq("_id", objId)).awaitFirstOrNull()
+    }
+
 
     override suspend fun createProduct(product: Product) {
         collection.insertOne(product).awaitSingle()
