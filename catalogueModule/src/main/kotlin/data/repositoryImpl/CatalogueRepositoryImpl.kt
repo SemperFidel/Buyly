@@ -36,6 +36,7 @@ class CatalogueRepositoryImpl(
     }
 
     override suspend fun deleteProductById(id: String) {
-        collection.deleteOne(Filters.eq("_id", id)).awaitSingle()
+        val objId = ObjectId(id)
+        collection.deleteOne(Filters.eq("_id", objId)).awaitSingle()
     }
 }
