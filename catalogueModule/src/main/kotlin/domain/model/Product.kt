@@ -1,11 +1,14 @@
 package domain.model
 
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import org.bson.types.ObjectId
 
+@Serializable
 data class Product(
     @SerialName("_id")
-    val id: ObjectId? = null,
+    @Contextual val id: ObjectId? = null,
     val name: String,
     val price: Double,
     val shortDesc: String,
