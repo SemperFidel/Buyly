@@ -8,6 +8,7 @@ koin = "4.1.1"
 kotest = "6.0.4"
 mockk = "1.14.6"
 mongo = "5.5.1"
+gatling = "3.14.9"
 
 [libraries]
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
@@ -45,3 +46,4 @@ ktor-serverTestHost = { module = "io.ktor:ktor-server-test-host-jvm", version.re
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+gatling = {id = "io.gatling.gradle", version.ref = "gatling"}

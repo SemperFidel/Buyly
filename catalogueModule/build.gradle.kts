@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.2.20"
     alias(libs.plugins.kotlinPluginSerialization)
+    alias(libs.plugins.gatling)
 }
 
 group = "ru.test"
