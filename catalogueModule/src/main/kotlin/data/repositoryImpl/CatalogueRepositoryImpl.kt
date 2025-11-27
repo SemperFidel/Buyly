@@ -3,6 +3,8 @@ package data.repositoryImpl
 import com.mongodb.client.model.Filters
 import com.mongodb.reactivestreams.client.MongoCollection
 import data.datasource.MongoConnection
+import data.validator.productValidator
+import data.validator.validateObjectId
 import domain.model.Product
 import domain.repository.CatalogueRepository
 import kotlinx.coroutines.flow.toList
@@ -21,22 +23,35 @@ class CatalogueRepositoryImpl(
         collection.find().asFlow().toList()
 
     override suspend fun getProductById(id: String): Product? {
-        val objId = ObjectId(id)
+        val objId = validateObjectId(id)
         return collection.find(Filters.eq("_id", objId)).awaitFirstOrNull()
     }
 
-
     override suspend fun createProduct(product: Product) {
-        collection.insertOne(product).awaitSingle()
+        val insertValue = productValidator(product) //Validator added
+        if (insertValue.isValid) {
+            collection.insertOne(product).awaitSingle()
+        } else {
+            throw IllegalArgumentException("Product is invalid")
+        }
     }
 
     override suspend fun updateProduct(product: Product) {
         requireNotNull(product.id) { "Product ID must not be null for update" }
-        collection.replaceOne(Filters.eq("_id", product.id), product).awaitSingle()
+        val updateValue = productValidator(product)
+        if (updateValue.isValid) {
+            collection.replaceOne(Filters.eq("_id", product.id), product).awaitSingle()
+        } else {
+            throw IllegalArgumentException("Product ID is invalid")
+        }
     }
 
     override suspend fun deleteProductById(id: String) {
-        val objId = ObjectId(id)
-        collection.deleteOne(Filters.eq("_id", objId)).awaitSingle()
+        val objId = validateObjectId(id)
+        val deleteResult = collection.deleteOne(Filters.eq("_id", objId)).awaitSingle()
+
+        if (deleteResult.deletedCount == 0L) {
+            throw NoSuchElementException("Product with id '$id' not found")
+        }
     }
 }

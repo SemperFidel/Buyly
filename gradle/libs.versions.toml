@@ -1,10 +1,11 @@
 [versions]
 kotlin = "2.2.20"
-ktor = "3.3.1"
+ktor = "3.3.2"
 logback = "1.5.20"
 kotlinxSerializationJSON = "1.7.3"
 kotlinxCoroutines = "1.10.2"
 koin = "4.1.1"
+konform = "0.11.1"
 kotest = "6.0.4"
 mockk = "1.14.6"
 mongo = "5.5.1"
@@ -35,6 +36,10 @@ koin-core = {module = "io.insert-koin:koin-core-jvm", version.ref = "koin"}
 koin-ktor = {module = "io.insert-koin:koin-ktor-jvm", version.ref = "koin"}
 koin-logger-slf4j ={module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin"}
 
+konform = {module = "io.konform:konform-jvm", version.ref = "konform"}
+
+kotest-runner = {module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest"}
+kotest-framework-engine = {module = "io.kotest:kotest-framework-engine-jvm", version.ref = "kotest"}
 kotest-assertions-core = {module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest"}
 kotest-assertions-ktor = {module = "io.kotest.extensions:kotest-assertions-ktor-jvm", version.ref = "kotest"}
 kotest-extensions-koin = {module = "io.kotest:kotest-extensions-koin-jvm", version.ref = "kotest"}
