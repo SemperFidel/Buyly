@@ -22,6 +22,7 @@ val productDTOValidator = Validation {
     }
     ProductDTO::shortDesc {
         minLength(1) hint "Description must be at least 1 character long"
+        constrain("Description cannot be blank") { it.isNotBlank() }
     }
     ProductDTO::imagesURL {
         minItems(1) hint "At least one image must be provided"

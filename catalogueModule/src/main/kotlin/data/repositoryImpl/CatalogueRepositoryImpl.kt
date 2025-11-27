@@ -29,20 +29,26 @@ class CatalogueRepositoryImpl(
 
     override suspend fun createProduct(product: Product) {
         val insertValue = productValidator(product) //Validator added
-        if (insertValue.isValid) {
-            collection.insertOne(product).awaitSingle()
-        } else {
+        if (!insertValue.isValid) {
             throw IllegalArgumentException("Product is invalid")
         }
+        collection.insertOne(product).awaitSingle()
     }
 
     override suspend fun updateProduct(product: Product) {
-        requireNotNull(product.id) { "Product ID must not be null for update" }
-        val updateValue = productValidator(product)
-        if (updateValue.isValid) {
-            collection.replaceOne(Filters.eq("_id", product.id), product).awaitSingle()
-        } else {
-            throw IllegalArgumentException("Product ID is invalid")
+        val id = requireNotNull(product.id) { "Product ID must not be null for update" }
+
+        val result = productValidator(product)
+        if (!result.isValid) {
+            throw IllegalArgumentException("Product validation failed")
+        }
+
+        val updateResult = collection
+            .replaceOne(Filters.eq("_id", id), product)
+            .awaitSingle()
+
+        if (updateResult.matchedCount == 0L) {
+            throw NoSuchElementException("Product with ID '$id' not found")
         }
     }
 
