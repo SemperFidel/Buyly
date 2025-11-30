@@ -15,7 +15,7 @@ captures
 !*.xcodeproj/xcshareddata/
 !*.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
-**/xcshareddata/WorkspaceSettings.xcsettings
+**/xcshareddata/WorkspaceSettings.xcsettingsНА
 node_modules/
 keystore.jks
 docker-compose.yml
