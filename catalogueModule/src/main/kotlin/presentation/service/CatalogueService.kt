@@ -24,24 +24,21 @@ class CatalogueService(
         getProductByIdUseCase(id)
             ?: throw NotFoundException("Product with id=$id not found")
 
-    suspend fun create(product: ProductDTO): Unit =
-        try {
-            createProductUseCase(product)
-        } catch (e: IllegalArgumentException) {
+    suspend fun create(product: ProductDTO) {
+        createProductUseCase(product).onFailure { e ->
             throw BadRequestException(e.message ?: "Invalid product data")
         }
+    }
 
-    suspend fun update(product: ProductDTO): Unit =
-        try {
-            updateProductUseCase(product)
-        } catch (e: IllegalArgumentException) {
+    suspend fun update(product: ProductDTO) {
+        updateProductUseCase(product).onFailure { e ->
             throw BadRequestException(e.message ?: "Invalid product data")
         }
+    }
 
-    suspend fun delete(id: String): Unit =
-        try {
-            deleteProductUseCase(id)
-        } catch (e: IllegalArgumentException) {
+    suspend fun delete(id: String) {
+        deleteProductUseCase(id).onFailure { e ->
             throw BadRequestException(e.message ?: "Invalid id")
         }
+    }
 }

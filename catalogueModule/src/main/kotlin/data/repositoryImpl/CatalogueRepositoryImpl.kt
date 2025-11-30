@@ -48,7 +48,7 @@ class CatalogueRepositoryImpl(
             .awaitSingle()
 
         if (updateResult.matchedCount == 0L) {
-            throw NoSuchElementException("Product with ID '$id' not found")
+            throw NoSuchElementException("Product with id '$id' not found")
         }
     }
 

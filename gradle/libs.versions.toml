@@ -10,6 +10,7 @@ kotest = "6.0.4"
 mockk = "1.14.6"
 mongo = "5.5.1"
 gatling = "3.14.9"
+dokka = "2.0.0"
 
 [libraries]
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
@@ -44,11 +45,11 @@ kotest-assertions-core = {module = "io.kotest:kotest-assertions-core-jvm", versi
 kotest-assertions-ktor = {module = "io.kotest.extensions:kotest-assertions-ktor-jvm", version.ref = "kotest"}
 kotest-extensions-koin = {module = "io.kotest:kotest-extensions-koin-jvm", version.ref = "kotest"}
 mockk = {module = "io.mockk:mockk-jvm", version.ref = "mockk"}
-
 ktor-serverTestHost = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }
 
 [plugins]
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+dokka = {id = "org.jetbrains.dokka", version.ref = "dokka"}
 gatling = {id = "io.gatling.gradle", version.ref = "gatling"}

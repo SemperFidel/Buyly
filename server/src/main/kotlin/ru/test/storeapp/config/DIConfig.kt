@@ -13,7 +13,10 @@ fun Application.configureDI() {
     install(Koin) {
         SLF4JLogger()
         modules(
-            mongoModule,
+            mongoModule(
+                url = environment.config.property("ktor.mongo.uri").getString(),
+                name = environment.config.property("ktor.mongo.database").getString(),
+            ),
             catalogueRepositoryModule,
             catalogueUseCaseModule,
             catalogueServiceModule,

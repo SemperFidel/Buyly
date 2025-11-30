@@ -11,8 +11,8 @@ import domain.useCase.UpdateProductUseCase
 import org.koin.dsl.module
 import presentation.service.CatalogueService
 
-val mongoModule = module{
-    single { MongoConnection("mongodb://localhost:27017", "ServerDB") }
+fun mongoModule(url: String, name: String) = module{
+    single { MongoConnection(url, name) }
 }
 
 val catalogueRepositoryModule = module {

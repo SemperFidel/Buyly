@@ -3,4 +3,5 @@ plugins {
     alias(libs.plugins.ktor) apply false
     alias(libs.plugins.kotlinPluginSerialization) apply false
     alias(libs.plugins.gatling) apply false
+    alias(libs.plugins.dokka) apply false
 }
