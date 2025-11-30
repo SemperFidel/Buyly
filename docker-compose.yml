@@ -11,7 +11,7 @@ services:
       MONGO_URI: "mongodb://mongo:27017"
       MONGO_DB: "ServerDB"
 
-      SSL_KEYSTORE: "/app/keystore.jks"
+      SSL_KEYSTORE: "keystore.jks"
       SSL_KEY_ALIAS: "sampleAlias"
       SSL_KEYSTORE_PASS: "foobar"
       SSL_PRIVATE_KEY_PASS: "foobar"
@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
 
   mongo:
-    image: mongo:7
+    image: mongo:latest
     ports:
       - "27017:27017"
     volumes:

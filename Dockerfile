@@ -26,7 +26,7 @@ WORKDIR /app
 
 COPY --from=builder /home/gradle/server/build/libs/*-all.jar app.jar
 
-COPY server/src/main/resources/keystore.jks /app/keystore.jks
+COPY keystore.jks /app/keystore.jks
 
 EXPOSE 8080
 EXPOSE 8443
