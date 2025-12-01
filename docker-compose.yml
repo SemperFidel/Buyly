@@ -1,34 +1,47 @@
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./certs:/etc/nginx/certs:ro
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+    networks:
+      - app-net
+
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    environment:
-      APP_PORT: "8080"
-      APP_HOST: "0.0.0.0"
-      APP_SSL_PORT: "8443"
-
-      MONGO_URI: "mongodb://mongo:27017"
-      MONGO_DB: "ServerDB"
-
-      SSL_KEYSTORE: "keystore.jks"
-      SSL_KEY_ALIAS: "sampleAlias"
-      SSL_KEYSTORE_PASS: "foobar"
-      SSL_PRIVATE_KEY_PASS: "foobar"
-
-    ports:
-      - "8080:8080"
+    container_name: ktor-app
+    restart: unless-stopped
+    expose:
+      - "8080"
     depends_on:
       - mongo
-    restart: unless-stopped
+    environment:
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8080
+
+      MONGO_URI: mongodb://mongo:27017
+      MONGO_DB: ServerDB
+    networks:
+      - app-net
 
   mongo:
     image: mongo:latest
-    ports:
-      - "27017:27017"
+    container_name: mongo
+    restart: unless-stopped
     volumes:
       - mongo_data:/data/db
-    restart: unless-stopped
+    networks:
+      - app-net
 
 volumes:
   mongo_data:
+
+networks:
+  app-net:

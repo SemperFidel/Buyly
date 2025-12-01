@@ -2,7 +2,6 @@ ktor:
   deployment:
     port: ${?APP_PORT}
     host: ${?APP_HOST}
-    sslPort: ${?APP_SSL_PORT}
 
   application:
     modules:
@@ -11,10 +10,3 @@ ktor:
   mongo:
     uri: ${?MONGO_URI}
     database: ${?MONGO_DB}
-
-  security:
-    ssl:
-      keyStore: ${?SSL_KEYSTORE}
-      keyAlias: ${?SSL_KEY_ALIAS}
-      keyStorePassword: ${?SSL_KEYSTORE_PASS}
-      privateKeyPassword: ${?SSL_PRIVATE_KEY_PASS}

@@ -17,5 +17,7 @@ captures
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettingsНА
 node_modules/
-keystore.jks
-docker-compose.yml
+certs/
+html/
+nginx/
+vhost.d
