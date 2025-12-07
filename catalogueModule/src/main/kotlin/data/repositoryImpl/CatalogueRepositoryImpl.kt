@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.reactive.awaitSingle
-import org.bson.types.ObjectId
 
 class CatalogueRepositoryImpl(
     private val db: MongoConnection,

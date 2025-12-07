@@ -1,6 +1,7 @@
 package presentation.di
 
 import data.datasource.MongoConnection
+import data.datasource.MongoConnectionImpl
 import data.repositoryImpl.CatalogueRepositoryImpl
 import domain.repository.CatalogueRepository
 import domain.useCase.CreateProductUseCase
@@ -12,7 +13,7 @@ import org.koin.dsl.module
 import presentation.service.CatalogueService
 
 fun mongoModule(url: String, name: String) = module{
-    single { MongoConnection(url, name) }
+    single<MongoConnection> { MongoConnectionImpl(url, name) }
 }
 
 val catalogueRepositoryModule = module {
