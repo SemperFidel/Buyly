@@ -11,8 +11,7 @@ pipeline {
             steps {
                 script {
                 sh """
-                   docker compose -f docker-compose.yml build ktor-app
-                   docker compose -f docker-compose.yml up -d
+                   make all
                 """
                }
             }
