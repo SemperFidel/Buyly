@@ -12,7 +12,7 @@ services:
     networks:
       - app-net
 
-  app:
+  ktor-app:
     build:
       context: .
       dockerfile: Dockerfile
